@@ -1,6 +1,10 @@
 name: Autograding Tests
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
 
 jobs:
   build:
@@ -9,7 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Compile and Test
+    - name: Compile and Test All Activities
       run: |
+        cd .github/
         chmod +x scripts/evaluate.sh
         ./scripts/evaluate.sh
