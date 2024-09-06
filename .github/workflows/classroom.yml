@@ -11,5 +11,6 @@ jobs:
 
     - name: Compile and Test
       run: |
+        cd .github/
         chmod +x scripts/evaluate.sh
         ./scripts/evaluate.sh
