@@ -51,3 +51,9 @@ If you have any questions or run into issues, please reach out to your instructo
 Good luck, and happy coding!
 
 ![Auto Evaluation](https://github.com/ComputerScienceTec/data-structures/actions/workflows/classroom.yml/badge.svg)
+
+## Resultados de Evaluación
+
+Los resultados de las evaluaciones están disponibles en el [archivo de resultados](results.md).
+
+Revisa este directorio para ver los detalles de tus evaluaciones.

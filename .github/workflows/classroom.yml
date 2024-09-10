@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, data-structures]
 
     steps:
     - uses: actions/checkout@v2
@@ -18,3 +18,9 @@ jobs:
         cd .github/
         chmod +x scripts/evaluate.sh
         ./scripts/evaluate.sh
+
+    - name: Upload Results as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: results.md
