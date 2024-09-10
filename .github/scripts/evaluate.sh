@@ -69,12 +69,12 @@ for activity_dir in $(find $STUDENT_CODE_DIR -mindepth 1 -maxdepth 1 -type d); d
         total_tests=$((total_tests + 1))
     done
     
-    for input_file in "$HIDDEN_TEST_INPUT_DIR"/*.txt; do
-        base_name=$(basename "$input_file" .txt)
+    for hidden_input_file in "$HIDDEN_TEST_INPUT_DIR"/*.txt; do
+        base_name=$(basename "$hidden_input_file" .txt)
         expected_output_file="${HIDDEN_EXPECTED_OUTPUT_DIR}/output_${base_name}.txt"
         
         # Ejecutar el programa y capturar la salida
-        "${STUDENT_ACTIVITY_DIR}/student_program.o" < "$input_file" > "$ACTUAL_OUTPUT"
+        "${STUDENT_ACTIVITY_DIR}/student_program.o" < "$hidden_input_file" > "$ACTUAL_OUTPUT"
         
         # Comparar el resultado con el esperado
         if diff -q "$ACTUAL_OUTPUT" "$expected_output_file" > /dev/null; then
