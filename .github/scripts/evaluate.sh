@@ -26,21 +26,30 @@ for activity_dir in $(find $STUDENT_CODE_DIR -mindepth 1 -maxdepth 1 -type d); d
     HIDDEN_TEST_INPUT_DIR="${HIDDEN_TEST_INPUT_BASE_DIR}/${activity}/input"
     HIDDEN_EXPECTED_OUTPUT_DIR="${HIDDEN_EXPECTED_OUTPUT_BASE_DIR}/${activity}/output"
 
-    # Busca automáticamente el archivo cpp del estudiante
-    STUDENT_CODE=$(find $STUDENT_ACTIVITY_DIR -name "*.cpp" | head -n 1)
+    # Busca automáticamente todos los archivos cpp y headers .h del estudiante
+    STUDENT_CPP_FILES=$(find "$STUDENT_ACTIVITY_DIR" -name "*.cpp")
 
-    # Verifica que el archivo cpp del estudiante exista
-    if [ -z "$STUDENT_CODE" ]; then
-        echo "Error: No se encontró un archivo .cpp en el directorio ${STUDENT_ACTIVITY_DIR}"
+    # Verifica que existan archivos cpp
+    if [ -z "$STUDENT_CPP_FILES" ]; then
+        echo "Error: No se encontraron archivos .cpp en el directorio ${STUDENT_ACTIVITY_DIR}"
+        echo "## Actividad: $activity" >> $RESULTS_FILE
+        echo "Compilación fallida: No se encontraron archivos .cpp" >> $RESULTS_FILE
+        echo "Total de pruebas: 0" >> $RESULTS_FILE
+        echo "Pruebas pasadas: 0" >> $RESULTS_FILE
+        echo "Promedio: 0%" >> $RESULTS_FILE
+        echo "" >> $RESULTS_FILE
         continue
     fi
 
-    # Compilar el código del estudiante
-    g++ "$STUDENT_CODE" -o "${STUDENT_ACTIVITY_DIR}/student_program.o"
+    # Compilar todos los archivos cpp del estudiante
+    g++ $STUDENT_CPP_FILES -o "${STUDENT_ACTIVITY_DIR}/student_program.o"
     if [ $? -ne 0 ]; then
         echo "Error: Fallo en la compilación de $activity."
         echo "## Actividad: $activity" >> $RESULTS_FILE
         echo "Compilación fallida" >> $RESULTS_FILE
+        echo "Total de pruebas: 0" >> $RESULTS_FILE
+        echo "Pruebas pasadas: 0" >> $RESULTS_FILE
+        echo "Promedio: 0%" >> $RESULTS_FILE
         echo "" >> $RESULTS_FILE
         continue
     fi

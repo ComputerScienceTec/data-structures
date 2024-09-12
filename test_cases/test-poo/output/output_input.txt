@@ -1,0 +1,2 @@
+Área: 15
+Perímetro: 16
