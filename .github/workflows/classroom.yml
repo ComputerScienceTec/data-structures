@@ -11,7 +11,7 @@ jobs:
     runs-on: [self-hosted, linux, data-structures]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Compile and Test All Activities
       run: |
@@ -20,7 +20,7 @@ jobs:
         ./scripts/evaluate.sh
 
     - name: Upload Results as Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: results.md
