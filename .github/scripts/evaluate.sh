@@ -28,7 +28,6 @@ for activity_dir in $(find $STUDENT_CODE_DIR -mindepth 1 -maxdepth 1 -type d); d
 
     # Busca automáticamente todos los archivos cpp y headers .h del estudiante
     STUDENT_CPP_FILES=$(find "$STUDENT_ACTIVITY_DIR" -name "*.cpp")
-    STUDENT_HEADER_FILES=$(find "$STUDENT_ACTIVITY_DIR" -name "*.h")
 
     # Verifica que existan archivos cpp
     if [ -z "$STUDENT_CPP_FILES" ]; then
@@ -42,8 +41,8 @@ for activity_dir in $(find $STUDENT_CODE_DIR -mindepth 1 -maxdepth 1 -type d); d
         continue
     fi
 
-    # Compilar el código del estudiante
-    g++ "$STUDENT_CODE" -o "${STUDENT_ACTIVITY_DIR}/student_program.o"
+    # Compilar todos los archivos cpp del estudiante
+    g++ $STUDENT_CPP_FILES -o "${STUDENT_ACTIVITY_DIR}/student_program.o"
     if [ $? -ne 0 ]; then
         echo "Error: Fallo en la compilación de $activity."
         echo "## Actividad: $activity" >> $RESULTS_FILE
