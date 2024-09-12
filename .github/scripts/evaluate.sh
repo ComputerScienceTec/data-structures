@@ -41,6 +41,9 @@ for activity_dir in $(find $STUDENT_CODE_DIR -mindepth 1 -maxdepth 1 -type d); d
         echo "Error: Fallo en la compilación de $activity."
         echo "## Actividad: $activity" >> $RESULTS_FILE
         echo "Compilación fallida" >> $RESULTS_FILE
+        echo "Total de pruebas: 0" >> $RESULTS_FILE
+        echo "Pruebas pasadas: 0" >> $RESULTS_FILE
+        echo "Promedio: 0%" >> $RESULTS_FILE
         echo "" >> $RESULTS_FILE
         continue
     fi
