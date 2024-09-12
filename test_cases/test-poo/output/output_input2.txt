@@ -1,0 +1,2 @@
+Área: 70
+Perímetro: 34
